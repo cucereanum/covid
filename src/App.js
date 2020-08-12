@@ -1,13 +1,12 @@
 import React from "react";
 
-import { Cards, Chart, CountryPicker } from "./components";
+import { Cards, Chart, CountryPicker, Map } from "./components";
 import styles from "./App.module.css";
 
 import { fetchData, getCountries, getCountryData } from "./api";
 
 import coronaImage from "./images/image.png";
 import "leaflet/dist/leaflet.css";
-import Map from "./components/map/Map.js";
 
 //
 
