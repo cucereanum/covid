@@ -1,0 +1,33 @@
+body {
+  background-color: rgb(235, 243, 243);
+  margin: 0;
+  padding: 0 1.5rem;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.image {
+  width: 370px;
+  margin-top: 50px;
+}
+
+@media (max-width: 770px) {
+  .container {
+    margin: 0 10%;
+  }
+  .image {
+    width: 100%;
+  }
+  svg {
+    width: 100%;
+  }
+}
+html {
+  font-family: system-ui, sans-serif;
+  font-size: 1.25rem;
+}
