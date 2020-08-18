@@ -4,5 +4,5 @@ layout: default
 
 some text here
 
-{% include_relative README.md %}
+{% include_relative ../README.md %}
 
