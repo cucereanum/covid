@@ -23,6 +23,7 @@ class App extends React.Component {
   async componentDidMount() {
     const fetchedData = await fetchData();
     const countries = await getCountries();
+
     this.setState({
       data: fetchedData,
       mapCountries: countries,

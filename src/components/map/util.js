@@ -29,6 +29,12 @@ export const showDataOnMap = (data, casesType = "cases") =>
       radius={
         Math.sqrt(country[casesType]) * casesTypeColors[casesType].multiplier
       }
+      onMouseOver={(e) => {
+        e.target.openPopup();
+      }}
+      onMouseOut={(e) => {
+        e.target.closePopup();
+      }}
     >
       <Popup>
         <div className="info-container">

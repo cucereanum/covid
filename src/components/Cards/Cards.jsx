@@ -5,12 +5,22 @@ import cx from "classnames";
 
 import styles from "./Cards.module.css";
 
+//  {new Date().toDateString()}
+
 const Cards = ({
-  data: { confirmed, recovered, deaths, lastUpdate },
+  data: {
+    cases,
+    recovered,
+    deaths,
+    lastUpdate,
+    todayCases,
+    todayDeaths,
+    todayRecovered,
+  },
   handleCase,
   selectedCase,
 }) => {
-  if (!confirmed) {
+  if (!cases) {
     return "Loading...";
   }
 
@@ -32,15 +42,10 @@ const Cards = ({
               Infected
             </Typography>
             <Typography variant="h5">
-              <CountUp
-                start={0}
-                end={confirmed.value}
-                duration={3}
-                separator=","
-              />
+              <CountUp start={0} end={cases} duration={3} separator="," />
             </Typography>
-            <Typography color="textSecondary">
-              {new Date(lastUpdate).toDateString()}
+            <Typography className={styles.colorInfected}>
+              Today: +{todayCases}
             </Typography>
             <Typography variant="body2">
               Number of active cases of COVID-19
@@ -62,18 +67,13 @@ const Cards = ({
               Recovered
             </Typography>
             <Typography variant="h5">
-              <CountUp
-                start={0}
-                end={recovered.value}
-                duration={3}
-                separator=","
-              />
+              <CountUp start={0} end={recovered} duration={3} separator="," />
             </Typography>
-            <Typography color="textSecondary">
-              {new Date(lastUpdate).toDateString()}
+            <Typography className={styles.colorRecovered}>
+              Today: +{todayRecovered}
             </Typography>
             <Typography variant="body2">
-              Number of recoveies cases of COVID-19
+              Number of recoveries cases of COVID-19
             </Typography>
           </CardContent>
         </Grid>
@@ -92,15 +92,10 @@ const Cards = ({
               Deaths
             </Typography>
             <Typography variant="h5">
-              <CountUp
-                start={0}
-                end={deaths.value}
-                duration={3}
-                separator=","
-              />
+              <CountUp start={0} end={deaths} duration={3} separator="," />
             </Typography>
-            <Typography color="textSecondary">
-              {new Date(lastUpdate).toDateString()}
+            <Typography className={styles.colorDeaths}>
+              Today: +{todayDeaths}
             </Typography>
             <Typography variant="body2">
               Number of deaths by COVID-19

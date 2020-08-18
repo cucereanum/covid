@@ -11,13 +11,25 @@
   border-bottom: 10px solid rgba(0, 0, 255, 0.5);
 }
 
+.colorInfected {
+  color: rgba(0, 0, 255);
+}
+
 .recovered {
   border-bottom: 10px solid rgba(0, 255, 0, 0.5);
+}
+.colorRecovered {
+  color: rgb(7, 102, 7);
 }
 
 .deaths {
   border-bottom: 10px solid rgba(255, 0, 0, 0.5);
 }
+
+.colorDeaths {
+  color: rgb(167, 6, 6);
+}
+
 .selected {
   border-top: 10px solid rgb(247, 150, 6);
 }

@@ -4,7 +4,7 @@ import { Line, Bar } from "react-chartjs-2";
 
 import styles from "./Chart.module.css";
 
-const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
+const Chart = ({ data: { cases, recovered, deaths }, country }) => {
   const [dailyData, setDailyData] = useState([]);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
     />
   ) : null;
 
-  const barChart = confirmed ? (
+  const barChart = cases ? (
     <Bar
       data={{
         labels: ["Infected", "Recovered", "Deaths"],
@@ -50,7 +50,7 @@ const Chart = ({ data: { confirmed, recovered, deaths }, country }) => {
               "rgba(0, 255, 0, 0.5)",
               "rgba(255, 0, 0, 0.5)",
             ],
-            data: [confirmed.value, recovered.value, deaths.value],
+            data: [cases, recovered, deaths],
           },
         ],
       }}

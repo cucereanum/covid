@@ -1,26 +1,37 @@
 import axios from "axios";
 
-const url = "https://covid19.mathdro.id/api";
+const anotherUrl = "https://disease.sh/v3/covid-19/all";
 
 const urlCountry = "https://disease.sh/v3/covid-19/countries";
 
 export const fetchData = async (country) => {
-  let changeableUrl = url;
+  let changeableUrl = anotherUrl;
 
   if (country) {
-    changeableUrl = `${url}/countries/${country}`;
+    changeableUrl = `https://disease.sh/v3/covid-19/countries/${country}`;
   }
 
   try {
     const {
-      data: { confirmed, recovered, deaths, lastUpdate },
+      data: {
+        cases,
+        recovered,
+        deaths,
+        lastUpdate,
+        todayCases,
+        todayDeaths,
+        todayRecovered,
+      },
     } = await axios.get(changeableUrl);
 
     const modifiedData = {
-      confirmed,
+      cases,
       recovered,
       deaths,
       lastUpdate,
+      todayCases,
+      todayDeaths,
+      todayRecovered,
     };
 
     return modifiedData;
@@ -31,7 +42,7 @@ export const fetchData = async (country) => {
 
 export const fetchDailyData = async () => {
   try {
-    const { data } = await axios.get(`${url}/daily`);
+    const { data } = await axios.get(`https://covid19.mathdro.id/api/daily`);
 
     const modifiedData = data.map((dailyData) => ({
       confirmed: dailyData.confirmed.total,
@@ -45,40 +56,13 @@ export const fetchDailyData = async () => {
 
 export const fetchCountries = async () => {
   try {
-    const {
-      data: { countries },
-    } = await axios.get(`${url}/countries`);
+    const { data } = await axios.get(`${urlCountry}`);
 
-    const good = countries.map((country) => country.name);
-    const index = good.indexOf("Gambia");
-    good.splice(index, 1);
+    const fetched = data.map((country) => country.country);
 
-    return good;
+    return fetched;
   } catch (error) {
     console.log(error);
-  }
-};
-
-export const fetchDataCountry = async (country) => {
-  let changeableUrl = `${url}/countries/${country}`;
-  if (country === "United States of America") {
-    changeableUrl = `${url}/countries/USA`;
-  }
-  try {
-    const {
-      data: { confirmed, recovered, deaths, lastUpdate },
-    } = await axios.get(changeableUrl);
-
-    const modifiedData = {
-      confirmed,
-      recovered,
-      deaths,
-      lastUpdate,
-    };
-
-    return modifiedData ? modifiedData : country;
-  } catch (error) {
-    return country;
   }
 };
 
